@@ -1,0 +1,29 @@
+{
+  "name": "themefuse/unyson",
+  "description": "Unyson WordPress Framework terminal interface",
+  "type": "wp-cli-package",
+  "homepage": "https://github.com/ThemeFuse/Unyson-CLI",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ThemeFuse",
+      "email": "hello@unyson.io",
+      "homepage": "https://github.com/ThemeFuse/Unyson-CLI"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.29"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "wp-cli/wp-cli": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unyson\\": "src/"
+    },
+    "files": [
+      "command.php"
+    ]
+  }
+}
