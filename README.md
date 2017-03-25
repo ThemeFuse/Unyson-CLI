@@ -49,7 +49,7 @@ command will be executed.
 wp unyson install --path=/var/www/wordpress/
 ```
 
-#### Install
+#### Install `wp unyson install`
 ##### Command
 ```
 wp unyson install [--version=<version>] [--force] [--activate] [--activate-network]
@@ -88,7 +88,9 @@ Plugin 'unyson' activated.
 Success: Installed 1 of 1 plugins.
 ```
 
-#### Uninstall
+---
+
+#### Uninstall `wp unyson uninstall`
 ##### Command
 ```
 wp unyson uninstall [--deactivate] [--skip-delete]
@@ -116,7 +118,9 @@ Uninstalled and deleted 'unyson' plugin.
 Success: Uninstalled 1 of 1 plugins.
 ```
 
-#### Version
+---
+
+#### Version `wp unyson version`
 ##### Command
 ```
 wp unyson version
@@ -133,7 +137,9 @@ $wp unyson version
 2.6.15
 ```
 
-#### Activate
+---
+
+#### Activate `wp unyson activate`
 ##### Command
 ```
 wp unyson activate [--network]
@@ -164,7 +170,9 @@ Plugin 'unyson' network activated.
 Success: Network activated 1 of 1 plugins.
 ```
 
-#### Deactivate
+---
+
+#### Deactivate `wp unyson deactivate`
 ##### Command
 ```
 wp unyson deactivate [--uninstall] [--network]
@@ -192,8 +200,9 @@ Plugin 'unyson' deactivated.
 Success: Deactivated 1 of 1 plugins.
 ```
 
+---
 
-#### Get
+#### Get `wp unyson get`
 ##### Command
 ```
 wp unyson get [--field=<field>] [--fields=<fields>] [--format=<format>]
@@ -242,7 +251,9 @@ $ wp unyson get --format=json
 {"name":"unyson","title":"Unyson","author":"ThemeFuse","version":"2.6.15","description":"A free drag & drop framework that comes with a bunch of built in extensions that will help you develop premium themes fast & easy.","status":"active"}
 ```
 
-#### Is Installed
+---
+
+#### Is Installed `wp unyson is_installed`
 ##### Command
 ```
 wp unyson is_installed
@@ -260,7 +271,9 @@ $ echo $?
 1
 ```
 
-#### Path
+---
+
+#### Path `wp unyson path`
 ##### Command
 ```
 wp unyson path [--dir]
@@ -289,7 +302,9 @@ $ wp unyson path --dir
 /var/www/wordpress/wp-content/plugins/unyson
 ```
 
-#### Status
+---
+
+#### Status `wp unyson status`
 ##### Command
 ```
 wp unyson status
@@ -311,7 +326,9 @@ $ wp unyson status
          Description: A free drag & drop framework that comes with a bunch of built in extensions that will help you develop premium themes fast & easy.
 ```
 
-#### Toggle
+---
+
+#### Toggle `wp unyson toggle`
 ##### Command
 ```
 wp unyson toggle [--network]
@@ -342,7 +359,9 @@ $ wp plugin toggle unyson
      Success: Toggled 1 of 1 plugins.
 ```
 
-#### Update
+---
+
+#### Update `wp unyson update`
 ##### Command
 ```
 wp unyson update [--format=<format>] [--version=<version>]
@@ -375,7 +394,9 @@ $ wp unyson update --version=2.5.4
      Success: Updated 1 of 1 plugins.
 ```
 
-#### Upgrade
+---
+
+#### Upgrade `wp unyson upgrade`
 ##### Command
 ```
 wp unyson upgrade
@@ -398,7 +419,9 @@ $ wp unyson upgrade
      Success: Updated 1 of 1 plugins.
 ```
 
-#### Downgrade
+---
+
+#### Downgrade `wp unyson dowbgrade`
 ##### Command
 ```
 wp unyson dowbgrade
@@ -421,7 +444,9 @@ $ wp unyson downgrade
      Success: Updated 1 of 1 plugins.
 ```
 
-#### Versions
+---
+
+#### Versions `wp unyson versions`
 ##### Command
 ```
 wp unyson versions
@@ -435,12 +460,12 @@ List all unyson available versions.
 List all Unyson versions
 ```
 $ wp unyson versions
-...
-          2.1.6
-          2.1.7
-        * 2.1.8
-          2.1.9
-          2.1.10
-          2.1.11
-...
+  ...
+  2.1.6
+  2.1.7
+* 2.1.8
+  2.1.9
+  2.1.10
+  2.1.11
+  ...
 ```
