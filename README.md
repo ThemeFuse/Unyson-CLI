@@ -1,5 +1,7 @@
 # Unyson-CLI
 
+## [Unyson WordPress Framework](https://github.com/ThemeFuse/Unyson) terminal interface
+
 ## Table of contents
  -  [Installation](#installation)
  -  [Get Started](#get-started)
@@ -15,8 +17,6 @@
         -  [Toggle](#toggle)
         -  [Update](#update)
         -  [Versions](#versions)
-
-## [Unyson WordPress Framework](https://github.com/ThemeFuse/Unyson) terminal interface
 
 ## Installation
  1. Make sure you have [WP-CLI](http://wp-cli.org/) installed
