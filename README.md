@@ -1,5 +1,21 @@
 # Unyson-CLI
 
+## Table of contents
+ -  [Installation](#installation)
+ -  [Get Started](#get-started)
+ -  [Commands list](#commands-list)
+    -  [Unyson commands](#unyson-commands)
+        -  [Install](#install)
+        -  [Uninstall](#uninstall)
+        -  [Version](#version)
+        -  [Deactivate](#deactivate)
+        -  [Get](#get)
+        -  [Is Installed](#is-installed)
+        -  [Path](#path)
+        -  [Toggle](#toggle)
+        -  [Update](#update)
+        -  [Versions](#versions)
+
 ## [Unyson WordPress Framework](https://github.com/ThemeFuse/Unyson) terminal interface
 
 ## Installation
