@@ -22,7 +22,9 @@ class Unyson extends \WP_CLI_Command {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *  wp unyson version
+	 *  # Print current version
+	 *  $wp unyson version
+	 *  2.6.15
 	 *
 	 * @when after_wp_load
 	 */
@@ -203,8 +205,13 @@ class Unyson extends \WP_CLI_Command {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     $ cd $(wp unyson path) && pwd
-	 *     /var/www/wordpress/wp-content/plugins
+	 *     # Get Unyson plugin path
+	 *     $ wp unyson path
+	 *     /var/www/wordpress/wp-content/plugins/unyson/unyson.php
+	 *
+	 *     # Get Unyson plugin directory
+	 *     $ wp unyson path --dir
+	 *     /var/www/wordpress/wp-content/plugins/unyson
 	 */
 	public function path( $_, $assoc_args = array() ) {
 		$this->plugin_command()->path( array( 'unyson' ), $assoc_args );
