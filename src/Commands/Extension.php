@@ -2,6 +2,7 @@
 
 namespace Unyson\Commands;
 
+use Unyson\Exceptions\CommandNotFound;
 use Unyson\Extension\Command;
 use \WP_CLI;
 
@@ -19,21 +20,25 @@ class Extension extends \WP_CLI_Command {
 			$this->empty_command( "ext $name" );
 		}
 
-		if ( ! method_exists( $ext, $command )
+		if ( ! $ext->has_command( $command )
 		     &&
 		     get_class( $ext ) == 'Unyson\Extension\Base'
 		) {
 			$this->non_existent_extension( $name );
 		}
 
-
-		if ( ! method_exists( $ext, $command ) ) {
+		try {
+			$ext->run_command( $command, $args, $options );
+		} catch ( CommandNotFound $e ) {
 			$this->non_existent_command( $name, $command );
 		}
-
-		call_user_func( array( $ext, $command ), $args, $options );
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return Command
+	 */
 	protected function get( $name ) {
 		$extension = fw_ext( $name );
 		$class     = $this->class_name( $name );
@@ -54,9 +59,9 @@ class Extension extends \WP_CLI_Command {
 	}
 
 	protected function class_name( $name ) {
-		return '\Unyson\Extension\FW_'
+		return '\Unyson\Extension\\'
 		       . implode(
-			       '_',
+			       '',
 			       array_map(
 				       'ucfirst',
 				       array_map(
@@ -65,7 +70,7 @@ class Extension extends \WP_CLI_Command {
 				       )
 			       )
 		       )
-		       . '_Command';
+		       . '\Command';
 	}
 
 	protected function get_commands_path() {

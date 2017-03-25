@@ -2,7 +2,9 @@
 
 namespace Unyson\Extension;
 
+use Unyson\Exceptions\CommandNotFound;
 use Unyson\Extension\Exceptions\NotFound;
+use Unyson\Utils\DocReflection;
 
 class Command extends \WP_CLI_Command {
 
@@ -153,6 +155,29 @@ class Command extends \WP_CLI_Command {
 		} else {
 			$this->message( '%rInactive%n' );
 		}
+	}
+
+	/**
+	 * @param $command
+	 *
+	 * @return bool
+	 */
+	public function has_command( $command ) {
+		return DocReflection::has_command( get_class( $this ), $command );
+	}
+
+	public function run_command( $command, $args, $options = array() ) {
+		if ( ! $this->has_command( $command ) ) {
+			throw new CommandNotFound(
+				sprintf( "The class %s doesn't have the %s", get_class( $this ), $command )
+			);
+		}
+
+		call_user_func(
+			array( $this, DocReflection::get_method( get_class( $this ), $command ) ),
+			$args,
+			$options
+		);
 	}
 
 	protected function get_ext() {
