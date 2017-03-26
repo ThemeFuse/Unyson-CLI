@@ -18,7 +18,7 @@
         -  [Toggle](#toggle-wp-unyson-toggle)
         -  [Update](#update-wp-unyson-update)
         -  [Upgrade](#upgrade-wp-unyson-upgrade)
-        -  [Downgrade](#downgrade-wp-unyson-dowbgrade)
+        -  [Downgrade](#downgrade-wp-unyson-downgrade)
         -  [Versions](#versions-wp-unyson-versions)
 
 ## Installation
@@ -424,10 +424,10 @@ $ wp unyson upgrade
 
 ---
 
-#### Downgrade `wp unyson dowbgrade`
+#### Downgrade `wp unyson downgrade`
 ##### Command
 ```
-wp unyson dowbgrade
+wp unyson downgrade
 ```
     
 ##### Description
