@@ -234,8 +234,7 @@ class Extensions extends \WP_CLI_Command {
 			$this->message( '%gActive%n' );
 			WP_CLI::halt( 1 );
 		} else {
-			$this->message( '%rInactive%n' );
-			WP_CLI::halt( 0 );
+			$this->error( '%rInactive%n' );
 		}
 	}
 
@@ -301,7 +300,7 @@ class Extensions extends \WP_CLI_Command {
 	}
 
 	protected function is_active( $name ) {
-		return (bool) fw_akg( $name, fw()->extensions->get_all() );
+		return \Unyson\Utils\Extension::active( $name );
 	}
 
 	private function prepare_message( $message ) {
