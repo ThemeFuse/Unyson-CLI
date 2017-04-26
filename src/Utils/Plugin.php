@@ -27,6 +27,10 @@ class Plugin {
 		return isset( $plugins[ static::get_file() ] );
 	}
 
+	public static function is_active() {
+		return defined( 'FW' );
+	}
+
 	public static function get() {
 		if ( self::is_installed() ) {
 			return get_plugin_data( WP_PLUGIN_DIR . '/' . static::get_file(), false, false );
