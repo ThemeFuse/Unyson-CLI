@@ -52,7 +52,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Plugin 'unyson' network activated.
 	 *     Success: Network activated 1 of 1 plugins.
 	 */
-	public function activate( $_, $assoc_args = array() ) {
+	public function activate( $_ = array(), $assoc_args = array() ) {
 		if ( isset( $assoc_args['all'] ) ) {
 			unset( $assoc_args['all'] );
 		}
@@ -77,7 +77,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Plugin 'unyson' deactivated.
 	 *     Success: Deactivated 1 of 1 plugins.
 	 */
-	public function deactivate( $_, $assoc_args = array() ) {
+	public function deactivate( $_ = array(), $assoc_args = array() ) {
 		if ( isset( $assoc_args['all'] ) ) {
 			unset( $assoc_args['all'] );
 		}
@@ -117,7 +117,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Plugin 'unyson' activated.
 	 *     Success: Installed 1 of 1 plugins.
 	 */
-	public function install( $_, $assoc_args = array() ) {
+	public function install( $_ = array(), $assoc_args = array() ) {
 		$plugin_command = new \Plugin_Command();
 
 		$plugin_command->install( array( 'unyson' ), $assoc_args );
@@ -139,7 +139,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Uninstalled and deleted 'unyson' plugin.
 	 *     Success: Uninstalled 1 of 1 plugins.
 	 */
-	public function uninstall( $_, $assoc_args = array() ) {
+	public function uninstall( $_ = array(), $assoc_args = array() ) {
 		$this->plugin_command()->uninstall( array( 'unyson' ), $assoc_args );
 	}
 
@@ -170,7 +170,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     $ wp unyson get --format=json
 	 *     {"name":"unyson","title":"Unyson","author":"ThemeFuse","version":"2.6.15","description":"A free drag & drop framework that comes with a bunch of built in extensions that will help you develop premium themes fast & easy.","status":"active"}
 	 */
-	public function get( $_, $assoc_args = array() ) {
+	public function get( $_ = array(), $assoc_args = array() ) {
 		$this->plugin_command()->get( array( 'unyson' ), $assoc_args );
 	}
 
@@ -190,7 +190,7 @@ class Unyson extends \WP_CLI_Command {
 	 *
 	 * @subcommand is-installed
 	 */
-	public function is_installed( $_, $assoc_args = array() ) {
+	public function is_installed( $_ = array(), $assoc_args = array() ) {
 		$this->plugin_command()->is_installed( array( 'unyson' ), $assoc_args );
 	}
 
@@ -213,7 +213,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     $ wp unyson path --dir
 	 *     /var/www/wordpress/wp-content/plugins/unyson
 	 */
-	public function path( $_, $assoc_args = array() ) {
+	public function path( $_ = array(), $assoc_args = array() ) {
 		$this->plugin_command()->path( array( 'unyson' ), $assoc_args );
 	}
 
@@ -260,7 +260,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Plugin 'unyson' activated.
 	 *     Success: Toggled 1 of 1 plugins.
 	 */
-	public function toggle( $_, $assoc_args = array() ) {
+	public function toggle( $_ = array(), $assoc_args = array() ) {
 		$this->plugin_command()->toggle( array( 'unyson' ), $assoc_args );
 	}
 
@@ -287,7 +287,7 @@ class Unyson extends \WP_CLI_Command {
 	 *     Plugin updated successfully.
 	 *     Success: Updated 1 of 1 plugins.
 	 */
-	public function update( $_, $assoc_args = array() ) {
+	public function update( $_ = array(), $assoc_args = array() ) {
 		if ( isset( $assoc_args['all'] ) ) {
 			unset( $assoc_args['all'] );
 		}
