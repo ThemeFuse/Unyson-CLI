@@ -31,6 +31,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups install --activate
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> install
 	 */
 	public function install( $_, $options = array() ) {
 		$activate = isset( $options['activate'] );
@@ -48,6 +49,7 @@ class Command extends \WP_CLI_Command {
 			. ( $activate ? " and activated" : "" )
 			. "."
 		);
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -64,6 +66,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups uninstall --force
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> uninstall
 	 */
 	public function uninstall( $_, $options = array() ) {
 
@@ -81,6 +84,8 @@ class Command extends \WP_CLI_Command {
 				->uninstall_extensions( array( $this->get_name() => array() ) ),
 			"Extension %c{$this->get_name()}%n successfully uninstalled."
 		);
+
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -91,6 +96,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups activate
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> activate
 	 */
 	public function activate( $_, $options = array() ) {
 		$this->manager_response(
@@ -99,6 +105,7 @@ class Command extends \WP_CLI_Command {
 				->activate_extensions( array( $this->get_name() => array() ) ),
 			"Extension %c{$this->get_name()}%n successfully activated."
 		);
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -109,6 +116,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups deactivate
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> deactivate
 	 */
 	public function deactivate( $_, $options = array() ) {
 		$this->manager_response(
@@ -117,6 +125,7 @@ class Command extends \WP_CLI_Command {
 				->deactivate_extensions( array( $this->get_name() => array() ) ),
 			"Extension %c{$this->get_name()}%n successfully deactivated."
 		);
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -127,6 +136,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups version
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> version
 	 */
 	public function version( $_, $options = array() ) {
 		try {
@@ -137,6 +147,7 @@ class Command extends \WP_CLI_Command {
 				"%yTips:%n You can run the %cwp unyson ext {$this->get_name()} install --activate%n"
 			) );
 		}
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -148,6 +159,7 @@ class Command extends \WP_CLI_Command {
 	 *     wp unyson ext backups status
 	 *
 	 * @when after_wp_load
+	 * @deprecated Use wp exts <name> status
 	 */
 	public function status( $_, $options = array() ) {
 		if ( $this->is_active() ) {
@@ -155,6 +167,7 @@ class Command extends \WP_CLI_Command {
 		} else {
 			$this->message( '%rInactive%n' );
 		}
+		\WP_CLI::halt( 1 );
 	}
 
 	/**
