@@ -63,6 +63,8 @@ class Extensions extends \WP_CLI_Command {
 			. ( $activate ? " and activated" : "" )
 			. "."
 		);
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -105,6 +107,8 @@ class Extensions extends \WP_CLI_Command {
 				->uninstall_extensions( array( $name => array() ) ),
 			"Extension %c{$name}%n successfully uninstalled."
 		);
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -134,6 +138,8 @@ class Extensions extends \WP_CLI_Command {
 				->activate_extensions( array( $name => array() ) ),
 			"Extension %c{$name}%n successfully activated."
 		);
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -164,6 +170,8 @@ class Extensions extends \WP_CLI_Command {
 				->deactivate_extensions( array( $name => array() ) ),
 			"Extension %c{$name}%n successfully deactivated."
 		);
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -195,6 +203,8 @@ class Extensions extends \WP_CLI_Command {
 				"%yTips:%n You can run the %cwp unyson ext {$name} install --activate%n"
 			) );
 		}
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**
@@ -225,6 +235,8 @@ class Extensions extends \WP_CLI_Command {
 		} else {
 			$this->message( '%rInactive%n' );
 		}
+
+		WP_CLI::halt( 1 );
 	}
 
 	/**

@@ -320,19 +320,17 @@ class Unyson extends \WP_CLI_Command {
 			exit;
 		} catch ( NotInstalled $e ) {
 			\WP_CLI::error( "The 'Plugin' plugin could not be found." );
-			exit;
 		}
 
 		$key = array_search( $current, $versions );
 
 		if ( $key == - 1 ) {
 			\WP_CLI::error( "Unable to locate 'Plugin' version" );
-			exit;
 		}
 
 		if ( $key == count( $versions ) - 1 ) {
 			\WP_CLI::line( 'You already have the latest version' );
-			exit;
+			\WP_CLI::halt( 1 );
 		}
 
 		$this->update( null, array( 'version' => $versions[ $key + 1 ] ) );
@@ -358,10 +356,8 @@ class Unyson extends \WP_CLI_Command {
 			$current  = Plugin::get_version();
 		} catch ( InvalidRequest $e ) {
 			\WP_CLI::error( "Unable to get 'Plugin' versions." );
-			exit;
 		} catch ( NotInstalled $e ) {
 			\WP_CLI::error( "The 'Plugin' plugin could not be found." );
-			exit;
 		}
 
 		$key = array_search( $current, $versions );
@@ -373,7 +369,7 @@ class Unyson extends \WP_CLI_Command {
 
 		if ( $key == 0 ) {
 			\WP_CLI::line( 'You already have the first version' );
-			exit;
+			\WP_CLI::halt( 1 );
 		}
 
 		$this->update( null, array( 'version' => $versions[ $key - 1 ] ) );
@@ -416,5 +412,7 @@ class Unyson extends \WP_CLI_Command {
 			\WP_CLI::line( "$prefix$v" );
 		},
 			Plugin::get_versions() );
+
+		\WP_CLI::halt( 1 );
 	}
 }
