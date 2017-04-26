@@ -232,11 +232,11 @@ class Extensions extends \WP_CLI_Command {
 
 		if ( $this->is_active( $name ) ) {
 			$this->message( '%gActive%n' );
+			WP_CLI::halt( 1 );
 		} else {
 			$this->message( '%rInactive%n' );
+			WP_CLI::halt( 0 );
 		}
-
-		WP_CLI::halt( 1 );
 	}
 
 	/**
