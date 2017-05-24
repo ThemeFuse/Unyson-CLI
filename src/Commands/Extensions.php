@@ -6,6 +6,7 @@ use Unyson\Exceptions\CommandNotFound;
 use Unyson\Extension\Command;
 use Unyson\Extension\Exceptions\NotFound;
 use Unyson\Utils\Plugin;
+use Unyson\Utils\Extensions as Exts;
 use \WP_CLI;
 
 class Extensions extends \WP_CLI_Command {
@@ -19,6 +20,55 @@ class Extensions extends \WP_CLI_Command {
 		if ( ! Plugin::is_active() ) {
 			WP_CLI::error( 'Unyson is not active. Run wp unyson activate' );
 		}
+	}
+
+	/**
+	 * List Unyson extensions.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--only=<filter>]
+	 * : Filter extensions to be listed only.
+	 * ---
+	 * default: all
+	 * options:
+	 *   - all
+	 *   - active
+	 *   - inactive
+	 *   - supported
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp unyson exts list
+	 *     wp unyson exts list --active
+	 *
+	 * @alias list
+	 * @when after_wp_load
+	 */
+	public function _list( $args, $options ) {
+		switch ( fw_akg( 'only', $options, 'all' ) ) {
+			case 'active' :
+				$extensions = Exts::get_active();
+				break;
+			case 'inactive' :
+				$extensions = array_diff( Exts::get_all(), Exts::get_active() );
+				break;
+			default:
+				$extensions = Exts::get_all();
+		}
+
+		\WP_CLI\Utils\format_items(
+			'table',
+			array_map( function ( $i ) {
+				return array(
+					'Name'   => $i,
+					'Status' => \Unyson\Utils\Extension::active( $i ) ? 'Active' : 'Inactive',
+				);
+			},
+				$extensions ),
+			array( 'Name', 'Status' )
+		);
 	}
 
 	/**
