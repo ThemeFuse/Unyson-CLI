@@ -26,11 +26,14 @@ class Extensions extends \WP_CLI_Command {
 	 *
 	 * ## OPTIONS
 	 *
-	 * <name>...
+	 * [<name>]
 	 * : Extension name.
 	 *
 	 * [--activate]
 	 * : Activate extension after installation
+	 *
+	 * [--supported]
+	 * : Install supported extensions by theme
 	 *
 	 * [--force]
 	 * : Removes the current installation of th extension and installs the new one
@@ -45,21 +48,23 @@ class Extensions extends \WP_CLI_Command {
 	public function install( $args, $options = array() ) {
 		$activate = isset( $options['activate'] );
 		$this->initialize_fs();
-		$name = array_shift( $args );
+		$supported  = isset( $options['supported'] );
+		$extensions = $supported ? fw()->extensions->manager->get_supported_extensions() : (array) $args;
+		$names      = implode( ', ', array_keys( $extensions ) );
 
-		if ( empty( $name ) ) {
+		if ( empty( $names ) ) {
 			$this->error( "The extension name cannot be empty" );
 		}
 
 		if ( isset( $options['force'] ) ) {
-			$this->uninstall( $args, array( 'force' => 'force' ) );
+			$this->uninstall( $extensions, array( 'force' => 'force' ) );
 		}
 
 		$this->manager_response(
 			$this
 				->ext_manager()
-				->install_extensions( array( $name => array() ), array( 'activate' => $activate ) ),
-			"Extension %c{$name}%n successfully installed"
+				->install_extensions( $extensions, array( 'activate' => $activate ) ),
+			"Extensions %c{$names}%n successfully installed"
 			. ( $activate ? " and activated" : "" )
 			. "."
 		);
@@ -72,7 +77,7 @@ class Extensions extends \WP_CLI_Command {
 	 *
 	 * ## OPTIONS
 	 *
-	 * <name>
+	 * [<name>]
 	 * : Extension name.
 	 *
 	 * [--force]
@@ -116,7 +121,7 @@ class Extensions extends \WP_CLI_Command {
 	 *
 	 * ## Options
 	 *
-	 * <name>
+	 * [<name>]
 	 * : Extension name.
 	 *
 	 * ## EXAMPLES
@@ -147,7 +152,7 @@ class Extensions extends \WP_CLI_Command {
 	 *
 	 * ## Options
 	 *
-	 * <name>
+	 * [<name>]
 	 * : Extension name.
 	 *
 	 * ## EXAMPLES
@@ -321,7 +326,10 @@ class Extensions extends \WP_CLI_Command {
 		}
 
 		$this->error( is_array( $response )
-			? array_shift( $response )->get_error_message()
+			? array_map( function ( $response ) {
+				return $response->get_error_message();
+			},
+				$response )
 			: $response->get_error_message() );
 	}
 }

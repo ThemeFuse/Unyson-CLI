@@ -11,6 +11,10 @@ class Extensions {
 		return array_keys( fw()->extensions->get_all() );
 	}
 
+	public static function get_supported() {
+		return array_keys( fw()->extensions->manager->get_supported_extensions() );
+	}
+
 	public static function get_temp_dir() {
 		return fw_fix_path( WP_CONTENT_DIR ) . '/extensions-tmp';
 	}
