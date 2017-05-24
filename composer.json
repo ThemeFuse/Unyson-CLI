@@ -1,6 +1,7 @@
 {
   "name": "themefuse/unyson",
   "description": "Unyson WordPress Framework terminal interface",
+  "version": "0.1.0",
   "type": "wp-cli-package",
   "homepage": "https://github.com/ThemeFuse/Unyson-CLI",
   "license": "MIT",
