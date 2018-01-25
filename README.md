@@ -30,7 +30,7 @@
     
  3. Install **Unyson-CLI** package.
     
-    `wp package install https://github.com/ThemeFuse/Unyson-CLI unyson-cli`
+    `wp package install ThemeFuse/Unyson-CLI`
     
 ## Get Started
 All **Unyson-CLI** commands starts with `wp unyson` followed by command name.
