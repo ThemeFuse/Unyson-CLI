@@ -6,6 +6,7 @@ use Unyson\Exceptions\CommandNotFound;
 use Unyson\Extension\Command;
 use Unyson\Extension\Exceptions\NotFound;
 use Unyson\Utils\Plugin;
+use Unyson\Utils\UpgraderSkin;
 use Unyson\Utils\Extensions as Exts;
 use \WP_CLI;
 
@@ -167,6 +168,50 @@ class Extensions extends \WP_CLI_Command {
 	}
 
 	/**
+	 * Uninstall Unyson extension.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [<name>]
+	 * : Extension name.
+	 *
+	 * [--force]
+	 * : Force uninstalling even if the extension is active
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp unyson exts backups uninstall
+	 *     wp unyson exts backups uninstall --force
+	 *
+	 * @when after_wp_load
+	 */
+	public function update( $args, $options = array() ) {
+
+		$name = ( $n = array_shift( $args ) ) && ! empty( $n ) && $this->get_ext( $n ) ? $n : '';
+		$updater = fw()->extensions->get( 'update' );
+		$exts    = $updater->get_extensions_with_updates( true );
+
+		if ( empty( $exts ) ) {
+			return $this->manager_response( true, 'There are no updates for extensions.' );
+		}
+
+		if ( $name ) {
+			if ( ! isset( $exts[ $name ] ) ) {
+				return $this->manager_response( true, "There is no update for {$name} extension." );
+			}
+
+			$exts = array( $name => '' );
+		}
+
+		$_POST['_nonce_fw_ext_update_extensions'] = wp_create_nonce( -1 );
+		$_POST['extensions'] = json_encode( array_keys( $exts ) );
+
+		$updater->_action_update_extensions( new UpgraderSkin() );
+
+		WP_CLI::halt( 1 );
+	}
+
+	/**
 	 * Activates Unyson extension.
 	 *
 	 * ## Options
@@ -323,7 +368,7 @@ class Extensions extends \WP_CLI_Command {
 			return $ext;
 		}
 
-		throw new NotFound( "Extension {$name} cannot be found" );
+		$this->error( "Extension {$name} cannot be found" );
 	}
 
 	/**

@@ -472,3 +472,27 @@ $ wp unyson versions
   2.1.11
   ...
 ```
+
+#### Update extensions `wp unyson exts update`
+##### Command
+```
+wp unyson exts update
+```
+    
+##### Description
+Will update all extensions at once. If you want to upate only a specific extension use:
+```
+wp unyson exts update extensionName
+```
+    
+##### EXAMPLES
+
+Update unyson extensions:
+```
+$ wp unyson exts update
+ Downloading the Mailer extension...
+ Installing the Mailer extension...
+ The Mailer extension has been successfully updated.
+
+
+```
