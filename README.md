@@ -480,7 +480,7 @@ wp unyson exts update
 ```
     
 ##### Description
-Will update all extensions at once. If you want to upate only a specific extension use:
+Will update all extensions at once. If you want to update only a specific extension use:
 ```
 wp unyson exts update extensionName
 ```
